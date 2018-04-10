@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
         imm.showSoftInput(user, InputMethodManager.SHOW_IMPLICIT);
 
 
-        add = (Button) findViewById(R.id.bAdd);
+        add = (Button) findViewById(R.id.bLogin);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,57 +68,15 @@ public class Login extends AppCompatActivity {
                 // Validations
 
                 // If the user is empty
-                if (user.getText().toString() == null) {
+                if (user.getText().toString().isEmpty()) {
                     Toast.makeText(Login.this, "Please enter the username", Toast.LENGTH_SHORT).show();
                 }
                 // If the pass is empty
-                else if (pass.getText().toString() == null) {
+                else if (pass.getText().toString().isEmpty()) {
                     Toast.makeText(Login.this, "Please enter the password", Toast.LENGTH_SHORT).show();
                 } else {
 
-                    String url = "http://tapkeer.com/book/user.php";
-
-                    list = new ArrayList<>();
-
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    try {
-                                        //converting the string to json array object
-                                        JSONArray array = new JSONArray(response);
-                                        String usertemp, passtemp;
-                                        //traversing through all the object
-                                        for (int i = 0; i < array.length(); i++) {
-
-                                            //getting product object from json array
-                                            JSONObject product = array.getJSONObject(i);
-
-
-                                            usertemp = product.getString("user");
-                                            passtemp = product.getString("pass");
-                                            Log.d("user - " + usertemp, "pass - " + passtemp);
-
-                                            list.add(new UserDat(usertemp, passtemp));
-
-                                        }
-
-                                        checkAndValidate(user.getText().toString(), pass.getText().toString());
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-
-                                }
-                            });
-
-                    //adding our stringrequest to queue
-                    Volley.newRequestQueue(Login.this).add(stringRequest);
+                    getDataFromServer();
 
                 }
 
@@ -134,6 +92,52 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    public void getDataFromServer(){
+        String url = "http://tapkeer.com/slot/user.php";
+
+        list = new ArrayList<>();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+                            String usertemp, passtemp;
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject product = array.getJSONObject(i);
+
+
+                                usertemp = product.getString("user");
+                                passtemp = product.getString("pass");
+                                Log.d("user - " + usertemp, "pass - " + passtemp);
+
+                                list.add(new UserDat(usertemp, passtemp));
+
+                            }
+
+                            checkAndValidate(user.getText().toString() , pass.getText().toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(Login.this).add(stringRequest);
+    }
+
     public void checkAndValidate(String usert, String passt){
 
         int flag = 0;
@@ -141,7 +145,7 @@ public class Login extends AppCompatActivity {
         for(int i = 0; i < list.size(); i++){
             if(usert.equals(list.get(i).user) && passt.equals(list.get(i).pass)){
                 flag = 1;
-                // TODO: 10-04-2018 Send to booking screen 
+                Toast.makeText(this, "Nagdi Bai zindabaad", Toast.LENGTH_SHORT).show();
             }
         }
 

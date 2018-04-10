@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/blue"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/bDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:theme="@style/AppTheme.Button"
+        android:text="Select Date"/>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:text="25/08/2003"/>
+
+    <Button
+        android:id="@+id/bSlot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:theme="@style/AppTheme.Button"
+        android:text="Select Slot"/>
+
+    <TextView
+        android:id="@+id/tvSlot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:text="Second"/>
+
+    <Button
+        android:id="@+id/bCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:theme="@style/AppTheme.Button"
+        android:text="Check Availability"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/bBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:visibility="invisible"
+        android:theme="@style/AppTheme.Button"
+        android:text="Buy Slot"/>
+
+
+</LinearLayout>

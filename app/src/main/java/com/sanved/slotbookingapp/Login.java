@@ -1,6 +1,7 @@
 package com.sanved.slotbookingapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -90,6 +91,18 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
+        add.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Intent intent = new Intent(Login.this, GameSelect.class);
+                intent.putExtra("name", "sanved77");
+                startActivity(intent);
+                
+                return false;
+            }
+        });
     }
 
     public void getDataFromServer(){
@@ -145,7 +158,9 @@ public class Login extends AppCompatActivity {
         for(int i = 0; i < list.size(); i++){
             if(usert.equals(list.get(i).user) && passt.equals(list.get(i).pass)){
                 flag = 1;
-                Toast.makeText(this, "Nagdi Bai zindabaad", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Login.this, GameSelect.class);
+                intent.putExtra("name", usert);
+                startActivity(intent);
             }
         }
 

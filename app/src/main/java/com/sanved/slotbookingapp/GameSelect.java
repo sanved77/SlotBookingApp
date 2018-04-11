@@ -15,7 +15,8 @@ import android.widget.TextView;
 public class GameSelect extends AppCompatActivity implements View.OnClickListener{
 
     CardView tennis, pool, badminton;
-    TextView date,slot;
+    TextView name;
+    static String strName = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +32,18 @@ public class GameSelect extends AppCompatActivity implements View.OnClickListene
         pool.setOnClickListener(this);
         badminton.setOnClickListener(this);
 
+        name = findViewById(R.id.tvName);
 
+        if(savedInstanceState == null){
+            Bundle bundle = getIntent().getExtras();
+            if(bundle != null){
+                strName = bundle.getString("name");
+            }
+        }else{
+            strName = (String) savedInstanceState.getSerializable("name");
+        }
+
+        name.setText("Hello " + strName);
     }
 
     @Override
@@ -53,6 +65,7 @@ public class GameSelect extends AppCompatActivity implements View.OnClickListene
                 break;
         }
 
+        intent.putExtra("user", strName);
         startActivity(intent);
 
     }

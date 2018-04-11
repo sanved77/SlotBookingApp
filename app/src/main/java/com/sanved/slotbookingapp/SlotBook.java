@@ -2,8 +2,10 @@ package com.sanved.slotbookingapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,10 +36,11 @@ import java.util.Map;
 
 public class SlotBook extends AppCompatActivity implements View.OnClickListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
-    TextView date, slot;
-    Button setdate, setslot, check;
+    TextView date, slot, result;
+    Button setdate, setslot, check, bookSlot;
 
     static int day, month, year, game;
+    String strName;
     int slotnum;
 
 
@@ -49,22 +54,27 @@ public class SlotBook extends AppCompatActivity implements View.OnClickListener,
             Bundle extras = getIntent().getExtras();
             if(extras != null){
                 game = Integer.parseInt(extras.getString("game"));
+                strName = extras.getString("user");
             }
         }else{
             game = (int) savedInstanceState.getSerializable("game");
+            strName = (String) savedInstanceState.getSerializable("user");
         }
 
         date = findViewById(R.id.tvDate);
         slot = findViewById(R.id.tvSlot);
+        result = findViewById(R.id.tvResult);
         slotnum = 1;
 
         setdate = findViewById(R.id.bDate);
         setslot = findViewById(R.id.bSlot);
         check = findViewById(R.id.bCheck);
+        bookSlot = findViewById(R.id.bBook);
 
         setdate.setOnClickListener(this);
         setslot.setOnClickListener(this);
         check.setOnClickListener(this);
+        bookSlot.setOnClickListener(this);
 
     }
 
@@ -132,9 +142,27 @@ public class SlotBook extends AppCompatActivity implements View.OnClickListener,
                 StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        Toast.makeText(SlotBook.this, ""+response, Toast.LENGTH_SHORT).show();
+                        int test = 69;
                         Log.i("My success",""+response);
+
+                        try {
+                            JSONObject reader = new JSONObject(response);
+                            test = reader.getInt("result");
+                        }catch(Exception e){
+                            Log.e("",e.toString());
+                        }
+
+                        if(test == 0){
+                            result.setTextColor(ContextCompat.getColor(SlotBook.this, R.color.yellow));
+                            result.setText("Slot already booked");
+                        }else if(test == 1){
+                            result.setTextColor(ContextCompat.getColor(SlotBook.this, R.color.white));
+                            result.setText("Slot Available");
+                            bookSlot.setVisibility(View.VISIBLE);
+                        }else{
+                            result.setTextColor(ContextCompat.getColor(SlotBook.this, R.color.red));
+                            result.setText("Error Occurred");
+                        }
 
                     }
                 }, new Response.ErrorListener() {
@@ -159,6 +187,19 @@ public class SlotBook extends AppCompatActivity implements View.OnClickListener,
                     }
                 };
                 queue.add(request);
+
+                break;
+
+            case R.id.bBook:
+
+                Intent intent = new Intent(SlotBook.this, BuySlot.class);
+                intent.putExtra("day", ""+day);
+                intent.putExtra("month", ""+month);
+                intent.putExtra("year", ""+year);
+                intent.putExtra("slot", ""+slotnum);
+                intent.putExtra("game", ""+game);
+                intent.putExtra("user", strName);
+                startActivity(intent);
 
                 break;
         }

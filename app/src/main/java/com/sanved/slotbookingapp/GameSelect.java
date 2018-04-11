@@ -1,19 +1,18 @@
 package com.sanved.slotbookingapp;
 
-import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 /**
  * Created by Sanved on 10-04-2018.
  */
 
-public class GameSelect extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
+public class GameSelect extends AppCompatActivity implements View.OnClickListener{
 
     CardView tennis, pool, badminton;
     TextView date,slot;
@@ -38,24 +37,24 @@ public class GameSelect extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
 
+        Intent intent = new Intent(GameSelect.this, SlotBook.class);
+
         switch(view.getId()){
             case R.id.cvTennis:
-
+                intent.putExtra("game", "1");
                 break;
 
             case R.id.cvPool:
-
+                intent.putExtra("game", "2");
                 break;
 
             case R.id.cvBadminton:
-
+                intent.putExtra("game", "3");
                 break;
         }
 
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        startActivity(intent);
 
     }
+
 }

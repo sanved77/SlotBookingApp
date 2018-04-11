@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/blue"
@@ -22,7 +23,7 @@
         android:layout_marginTop="15dp"
         android:textSize="25sp"
         android:textColor="@color/white"
-        android:text="25/08/2003"/>
+        android:text=""/>
 
     <Button
         android:id="@+id/bSlot"
@@ -40,7 +41,7 @@
         android:layout_marginTop="15dp"
         android:textSize="25sp"
         android:textColor="@color/white"
-        android:text="Second"/>
+        android:text=""/>
 
     <Button
         android:id="@+id/bCheck"

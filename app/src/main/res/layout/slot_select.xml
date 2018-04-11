@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Slot 1"
+            android:text="10 am"
             android:checked="true" />
 
         <RadioButton
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Slot 2"
+            android:text="12 pm"
             android:checked="true" />
 
         <RadioButton
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Slot 3"
+            android:text="4 pm"
             android:checked="true" />
 
     </RadioGroup>

@@ -115,15 +115,15 @@ public class SlotBook extends AppCompatActivity implements View.OnClickListener,
                                 switch (selectedId) {
                                     case R.id.r1:
                                         slotnum = 1;
-                                        slot.setText("Slot - " + slotnum);
+                                        slot.setText("10 am Slot");
                                         break;
                                     case R.id.r2:
                                         slotnum = 2;
-                                        slot.setText("Slot - " + slotnum);
+                                        slot.setText("12 pm Slot");
                                         break;
                                     case R.id.r3:
                                         slotnum = 3;
-                                        slot.setText("Slot - " + slotnum);
+                                        slot.setText("4 pm Slot");
                                         break;
                                 }
                             }

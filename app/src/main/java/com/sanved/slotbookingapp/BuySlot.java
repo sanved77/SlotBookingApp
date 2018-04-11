@@ -1,5 +1,6 @@
 package com.sanved.slotbookingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -105,8 +108,29 @@ public class BuySlot extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(BuySlot.this, ""+response, Toast.LENGTH_SHORT).show();
-                Log.i("My success",""+response);
+                int test = 0;
+
+                try {
+                    JSONObject reader = new JSONObject(response);
+                    test = reader.getInt("result");
+                }catch(Exception e){
+                    Log.e("",e.toString());
+                }
+
+                if(test == 1) {
+
+                    Intent intent = new Intent(BuySlot.this, OrderConfirm.class);
+                    intent.putExtra("day", "" + day);
+                    intent.putExtra("month", "" + month);
+                    intent.putExtra("year", "" + year);
+                    intent.putExtra("slot", "" + slotnum);
+                    intent.putExtra("game", "" + game);
+                    intent.putExtra("user", strName);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(BuySlot.this, "There is some error", Toast.LENGTH_SHORT).show();
+                }
 
             }
         }, new Response.ErrorListener() {

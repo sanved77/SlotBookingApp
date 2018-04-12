@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Order Completed"
+        android:text="Booking Confirm"
         android:textColor="@color/black"
         android:textSize="25sp" />
 

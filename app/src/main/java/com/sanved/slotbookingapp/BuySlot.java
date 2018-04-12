@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class BuySlot extends AppCompatActivity {
 
-    EditText et1,et2,et3,et4,et5;
+    EditText et1,et2;
     Button buy;
     int day,month,year,slotnum,game;
     String strName;
@@ -67,9 +67,6 @@ public class BuySlot extends AppCompatActivity {
 
         et1 = findViewById(R.id.et1);
         et2 = findViewById(R.id.et2);
-        et3 = findViewById(R.id.et3);
-        et4 = findViewById(R.id.et4);
-        et5 = findViewById(R.id.et5);
 
         summary = findViewById(R.id.tvSum);
 
@@ -87,11 +84,8 @@ public class BuySlot extends AppCompatActivity {
 
                 String se1 = et1.getText().toString();
                 String se2 = et2.getText().toString();
-                String se3 = et3.getText().toString();
-                String se4 = et4.getText().toString();
-                String se5 = et5.getText().toString();
 
-                if(se1.isEmpty() || se2.isEmpty() || se3.isEmpty() || se4.isEmpty() || se5.isEmpty()){
+                if(se1.isEmpty() || se2.isEmpty()){
                     Toast.makeText(BuySlot.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 }else{
                     sendData();
@@ -155,9 +149,6 @@ public class BuySlot extends AppCompatActivity {
 
                 map.put("cardno", ""+et1.getText().toString());
                 map.put("cardname", ""+et2.getText().toString());
-                map.put("cardmonth", ""+et3.getText().toString());
-                map.put("cardyear", ""+et4.getText().toString());
-
 
                 return map;
             }

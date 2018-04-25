@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -15,6 +16,7 @@ import android.widget.TextView;
 public class GameSelect extends AppCompatActivity implements View.OnClickListener{
 
     CardView tennis, pool, badminton;
+    Button admin, logout;
     TextView name;
     static String strName = "";
 
@@ -27,10 +29,28 @@ public class GameSelect extends AppCompatActivity implements View.OnClickListene
         tennis = findViewById(R.id.cvTennis);
         pool = findViewById(R.id.cvPool);
         badminton = findViewById(R.id.cvBadminton);
+        admin = findViewById(R.id.bAdmin);
+        logout = findViewById(R.id.bLogOut);
 
         tennis.setOnClickListener(this);
         pool.setOnClickListener(this);
         badminton.setOnClickListener(this);
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GameSelect.this, AdminPanel.class);
+                i.putExtra("user", strName);
+                startActivity(i);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(GameSelect.this, Login.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         name = findViewById(R.id.tvName);
 

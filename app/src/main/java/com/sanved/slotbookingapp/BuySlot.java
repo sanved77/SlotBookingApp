@@ -144,9 +144,7 @@ public class BuySlot extends AppCompatActivity {
                 map.put("year", ""+year);
                 map.put("slot", ""+slotnum);
                 map.put("game", ""+game);
-
                 map.put("user", strName);
-
                 map.put("cardno", ""+et1.getText().toString());
                 map.put("cardname", ""+et2.getText().toString());
 

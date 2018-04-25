@@ -37,7 +37,7 @@ import java.util.Map;
 public class SlotBook extends AppCompatActivity implements View.OnClickListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     TextView date, slot, result;
-    Button setdate, setslot, check, bookSlot;
+    Button setdate, setslot, check, bookSlot, logout;
 
     static int day, month, year, game;
     String strName;
@@ -75,6 +75,7 @@ public class SlotBook extends AppCompatActivity implements View.OnClickListener,
         setslot.setOnClickListener(this);
         check.setOnClickListener(this);
         bookSlot.setOnClickListener(this);
+
 
     }
 
@@ -200,6 +201,14 @@ public class SlotBook extends AppCompatActivity implements View.OnClickListener,
                 intent.putExtra("game", ""+game);
                 intent.putExtra("user", strName);
                 startActivity(intent);
+
+                break;
+
+            case R.id.bLogOut:
+
+                Intent intent2 = new Intent(SlotBook.this, Login.class);
+                startActivity(intent2);
+                finish();
 
                 break;
         }

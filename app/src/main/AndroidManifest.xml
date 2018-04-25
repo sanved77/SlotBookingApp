@@ -23,6 +23,7 @@
         <activity android:name=".SlotBook"></activity>
         <activity android:name=".BuySlot"></activity>
         <activity android:name=".OrderConfirm"></activity>
+        <activity android:name=".AdminPanel"></activity>
 
 
     </application>
